@@ -90,6 +90,7 @@ button
 #result
 {
     height: 40px;
+    text-align: right;
     font-size: 30px;
     font-family: monospace, "Times New Roman";
     font-weight: 900;

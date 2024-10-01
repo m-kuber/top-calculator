@@ -85,57 +85,35 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-const calculate = () =>
-{
+const calculate = () => {
     let input = result.textContent;
-    input = input.split('');
-    let operatorIndex = 0;
+    let operators = ['+', '-', '*', '/'];
+    let operator, operatorIndex;
 
-    if (input.includes('+'))
+    for (let op of operators) 
     {
-        operatorIndex = input.findIndex((item) => item === '+');
-        num1 = input.slice(0, operatorIndex);
-        num1 = parseInt(num1.join(''));
-        num2 = input.slice(operatorIndex + 1);
-        num2 = parseInt(num2.join(''));
+        if (input.includes(op)) 
+        {
+            operator = op;
+            operatorIndex = input.indexOf(op);
+            break;
+        }
+    }
+
+    if (operator) 
+    {
+        let num1 = parseInt(input.slice(0, operatorIndex));
+        let num2 = parseInt(input.slice(operatorIndex + 1));
 
         operation.textContent = result.textContent;
-        result.textContent = operate('+', num1, num2);
-    }
-    else if (input.includes('-'))
-    {
-        operatorIndex = input.findIndex((item) => item === '-');
-        num1 = input.slice(0, operatorIndex);
-        num1 = parseInt(num1.join(''));
-        num2 = input.slice(operatorIndex + 1);
-        num2 = parseInt(num2.join(''));
 
-        operation.textContent = result.textContent;
-        result.textContent = operate('-', num1, num2);
-    }
-    else if (input.includes('*'))
+        result.textContent = operate(operator, num1, num2);
+    } 
+    else 
     {
-        operatorIndex = input.findIndex((item) => item === '*');
-        num1 = input.slice(0, operatorIndex);
-        num1 = parseInt(num1.join(''));
-        num2 = input.slice(operatorIndex + 1);
-        num2 = parseInt(num2.join(''));
-
-        operation.textContent = result.textContent;
-        result.textContent = operate('*', num1, num2);
+        result.textContent = "Error";
     }
-    else if (input.includes('/'))
-    {
-        operatorIndex = input.findIndex((item) => item === '/');
-        num1 = input.slice(0, operatorIndex);
-        num1 = parseInt(num1.join(''));
-        num2 = input.slice(operatorIndex + 1);
-        num2 = parseInt(num2.join(''));
-
-        operation.textContent = result.textContent;
-        result.textContent = operate('/', num1, num2);
-    }
-}
+};
 
 const equals = document.querySelector("#equals-button");
 equals.addEventListener('click', calculate);
