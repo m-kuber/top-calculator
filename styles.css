@@ -5,7 +5,7 @@ body
 
 #calculator
 {
-    height: 400px;
+    height: 425px;
     width: 400px;
     background-color: gray;
     display: flex;
@@ -18,22 +18,12 @@ body
 
 #display
 {
-    height: 50px;
+    height: 70px;
     border: 3px solid black;
     border-radius: 5px;
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
-    background-color: whitesmoke;
-}
-
-#display > p
-{
-    margin: 0px 5px;
-    padding: 5px;
-    font-size: 30px;
-    font-weight: 900;
-    font-family: monospace, "Times New Roman";
+    align-items: stretch;
     background-color: whitesmoke;
 }
 
@@ -89,4 +79,29 @@ button
     font-weight: 700;
 }
 
+#operation-result
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+}
 
+#result
+{
+    height: 40px;
+    font-size: 30px;
+    font-family: monospace, "Times New Roman";
+    font-weight: 900;
+    margin: 1px 3px;
+}
+
+#operation
+{
+    height: 30px;
+    font-size: 20px;
+    font-weight: 300;
+    font-family: sans-serif, "Times New Roman";
+    text-align: right;
+    margin: 1px 3px;
+}
