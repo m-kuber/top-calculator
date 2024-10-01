@@ -33,7 +33,14 @@ const operate = (operator, a, b) => {
     }
     else if (operator === '/')
     {
-        return divide(a, b);
+        if (b === 0)
+        {
+            return "Don't divide by zero you idiot!";
+        }
+        else
+        {
+            return divide(a, b);
+        }
     }
     else
     {
@@ -55,10 +62,19 @@ clear.addEventListener('click', () => {
     operator = '';
 });
 
-const backspace = document.querySelector("#backspace");
-backspace.addEventListener('click', () => {
+const backspace_clicked = () => {
     let length = result.textContent.length;
     result.textContent = result.textContent.slice(-(length), -1);
+}
+
+const backspace = document.querySelector("#backspace");
+backspace.addEventListener('click', backspace_clicked);
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Backspace')
+    {
+        backspace_clicked();
+    }
 })
 
 document.addEventListener('keydown', (event) => {
@@ -67,3 +83,67 @@ document.addEventListener('keydown', (event) => {
         result.textContent += `${event.key}`;
     }
 });
+
+const calculate = () =>
+{
+    let input = result.textContent;
+    input = input.split('');
+    let operatorIndex = 0;
+
+    if (input.includes('+'))
+    {
+        operatorIndex = input.findIndex((item) => item === '+');
+        num1 = input.slice(0, operatorIndex);
+        num1 = parseInt(num1.join(''));
+        num2 = input.slice(operatorIndex + 1);
+        num2 = parseInt(num2.join(''));
+
+        operation.textContent = result.textContent;
+        result.textContent = operate('+', num1, num2);
+    }
+    else if (input.includes('-'))
+    {
+        operatorIndex = input.findIndex((item) => item === '-');
+        num1 = input.slice(0, operatorIndex);
+        num1 = parseInt(num1.join(''));
+        num2 = input.slice(operatorIndex + 1);
+        num2 = parseInt(num2.join(''));
+
+        operation.textContent = result.textContent;
+        result.textContent = operate('-', num1, num2);
+    }
+    else if (input.includes('*'))
+    {
+        operatorIndex = input.findIndex((item) => item === '*');
+        num1 = input.slice(0, operatorIndex);
+        num1 = parseInt(num1.join(''));
+        num2 = input.slice(operatorIndex + 1);
+        num2 = parseInt(num2.join(''));
+
+        operation.textContent = result.textContent;
+        result.textContent = operate('*', num1, num2);
+    }
+    else if (input.includes('/'))
+    {
+        operatorIndex = input.findIndex((item) => item === '/');
+        num1 = input.slice(0, operatorIndex);
+        num1 = parseInt(num1.join(''));
+        num2 = input.slice(operatorIndex + 1);
+        num2 = parseInt(num2.join(''));
+
+        operation.textContent = result.textContent;
+        result.textContent = operate('/', num1, num2);
+    }
+
+}
+
+const equals = document.querySelector("#equals-button");
+equals.addEventListener('click', calculate);
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter')
+    {
+        calculate();
+    }
+})
+
