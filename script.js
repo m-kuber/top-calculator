@@ -57,6 +57,7 @@ let operator = '';
 const clear = document.querySelector("#clear");
 clear.addEventListener('click', () => {
     result.textContent = "";
+    operation.textContent = "";
     num1 = 0;
     num2 = 0;
     operator = '';
@@ -134,7 +135,6 @@ const calculate = () =>
         operation.textContent = result.textContent;
         result.textContent = operate('/', num1, num2);
     }
-
 }
 
 const equals = document.querySelector("#equals-button");
@@ -145,5 +145,19 @@ document.addEventListener('keydown', (event) => {
     {
         calculate();
     }
-})
+});
+
+const numbers = document.querySelectorAll(".number");
+numbers.forEach((button) => {
+    button.addEventListener('click', () => {
+        result.textContent += button.textContent;
+    })
+});
+
+const operators = document.querySelectorAll(".operator-button");
+operators.forEach((button) => {
+    button.addEventListener('click', () => {
+        result.textContent += button.textContent;
+    })
+});
 
