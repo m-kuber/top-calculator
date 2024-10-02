@@ -1,21 +1,21 @@
 function add(a, b) 
 {
-    return parseInt(a) + parseInt(b);
+    return a + b;
 }
 
 function subtract(a, b)
 {
-    return parseInt(a) - parseInt(b);
+    return a - b;
 }
 
 function multiply(a, b)
 {
-    return parseInt(a) * parseInt(b);
+    return a * b;
 }
 
 function divide(a, b)
 {
-    return Math.round((parseInt(a) / parseInt(b)) * 100) / 100;
+    return Math.round((a / b) * 100) / 100;
 }
 
 const operate = (operator, a, b) => {
@@ -35,7 +35,7 @@ const operate = (operator, a, b) => {
     {
         if (b === 0)
         {
-            return "Don't divide by zero you idiot!";
+            return "Idiot!";
         }
         else
         {
